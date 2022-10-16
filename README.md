@@ -18,3 +18,5 @@ For your reference, we have prepared the ER diagram design for the new assesemen
 * Install requirements ```python3 -m pip install -U -r requirements.txt```
 * Perform migrations ```python3 manage.py makemigrations``` and then ```python3 manage.py migrate```
 * Start the server ```python3 manage.py runserver```. The server will be started on port 8000
+
+* Create super user ```py -3.7 manage.py createsuperuser```
