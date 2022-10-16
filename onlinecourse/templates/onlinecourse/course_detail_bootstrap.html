@@ -77,8 +77,7 @@
 
             <form id="questionform" action="point to a submit view" method="post" class="collapse">
                         <!-- for each question in the course -->
-                        {% for lesson in course.lesson_set.all %}
-                        {% for question in lesson.question_set.all %}
+                        {% for question in course.question_set.all %}
                         <div class="card mt-1">
                             <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                             {% csrf_token %}
@@ -95,7 +94,6 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        {% endfor %}
                         {% endfor %}
 
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
