@@ -153,17 +153,16 @@ def show_exam_result(request, course_id, submission_id):
 
     submission = get_object_or_404(Submission, pk=submission_id)
     submitted_choice_ids = list(map(lambda c: c.id, submission.choices.all()))
-    total_questions = 0
-    total_correct_question = 0
+    total_question_grade = 0
+    total_answer_grade = 0
     for question in questions_qs:
-        total_questions += 1
+        total_question_grade += question.grade
         correct_choices_qs = question.choice_set.filter(is_correct=True)
         is_question_answer_correctly = True
         for correct_choice in correct_choices_qs:
             if correct_choice.id not in submitted_choice_ids:
                 is_question_answer_correctly = False
         if is_question_answer_correctly:
-            total_correct_question += 1
-    grade = int(total_correct_question / total_questions * 100)
-    context = {'grade': grade, 'course': course, 'selected_choices': submitted_choice_ids}
+            total_answer_grade += question.grade
+    context = {'grade': total_answer_grade, 'course': course, 'selected_choices': submitted_choice_ids}
     return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
