@@ -164,5 +164,5 @@ def show_exam_result(request, course_id, submission_id):
                 is_question_answer_correctly = False
         if is_question_answer_correctly:
             total_answer_grade += question.grade
-    context = {'grade': total_answer_grade, 'course': course, 'selected_choices': submitted_choice_ids}
+    context = {'grade': int(total_answer_grade), 'course': course, 'selected_choices': submitted_choice_ids}
     return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
